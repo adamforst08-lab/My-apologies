@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Please Forgive Me</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:#ffd6e7;
+}
+
+/* PAGES */
+
+.page{
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    position:relative;
+}
+
+/* CAT */
+
+.cat{
+    width:260px;
+    animation:float 3s ease-in-out infinite;
+    filter:drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* TITLE */
+
+h1{
+    margin-top:20px;
+    font-size:3rem;
+    color:#ff2e7a;
+    text-shadow:2px 2px 10px rgba(255,255,255,0.7);
+    text-align:center;
+}
+
+/* BUTTONS */
+
+.buttons{
+    margin-top:35px;
+    position:relative;
+    width:400px;
+    height:120px;
+}
+
+button{
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    font-size:1.2rem;
+    cursor:pointer;
+    transition:0.3s;
+    position:absolute;
+    font-weight:bold;
+}
+
+#yesBtn{
+    left:70px;
+    background:#ff2e7a;
+    color:white;
+    box-shadow:0 8px 20px rgba(255,46,122,0.4);
+}
+
+#yesBtn:hover{
+    transform:scale(1.1);
+}
+
+#noBtn{
+    right:70px;
+    background:white;
+    color:#ff2e7a;
+    border:2px solid #ff2e7a;
+}
+
+/* SECOND PAGE */
+
+#secondPage{
+    display:none;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)),
+    url('https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=1200&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+    padding:40px;
+    text-align:center;
+}
+
+/* LETTER */
+
+.letter-box{
+    max-width:850px;
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.letter-title{
+    color:#ff2e7a;
+    font-size:3rem;
+    margin-bottom:25px;
+}
+
+.letter{
+    font-size:1.2rem;
+    line-height:2;
+    color:#444;
+}
+
+/* HEARTS */
+
+.heart{
+    position:absolute;
+    color:#ff2e7a;
+    font-size:20px;
+    animation:rise 5s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes rise{
+    0%{
+        transform:translateY(100vh) scale(0.5);
+        opacity:0;
+    }
+
+    30%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120vh) scale(1.5);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FIRST PAGE -->
+
+<div class="page" id="firstPage">
+
+    <img class="cat"
+    src="https://cdn-icons-png.flaticon.com/512/7636/7636538.png"
+    alt="Cute Cat">
+
+    <h1>Please Forgive Me 🥺</h1>
+
+    <div class="buttons">
+
+        <button id="yesBtn">
+            Yes 💖
+        </button>
+
+        <button id="noBtn">
+            No 😭
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SECOND PAGE -->
+
+<div class="page" id="secondPage">
+
+    <div class="letter-box">
+
+        <h1 class="letter-title">
+            I Knew You Would Forgive Me 💕
+        </h1>
+
+        <p class="letter">
+
+            Thank you for giving me another chance and for having such a soft and beautiful heart.
+            I know I may not always be perfect, and sometimes I make mistakes that hurt you without
+            meaning to. But one thing I never want you to doubt is how important you are to me.
+            Your smile brings peace to my chaos, and your presence makes even ordinary days feel
+            special. I truly miss the moments when we laugh together without worries, and I hope we
+            can create even more beautiful memories ahead. You mean more to me than words can fully
+            explain. I promise to appreciate you more, listen better, and protect the happiness we
+            share together. Thank you for forgiving me, for staying, and for being the sweetest part
+            of my life. 💖
+
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+/* MOVING NO BUTTON */
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+
+    const x = Math.floor(Math.random() * 300) - 100;
+    const y = Math.floor(Math.random() * 200) - 100;
+
+    noBtn.style.transform =
+    `translate(${x}px, ${y}px)`;
+
+});
+
+/* YES BUTTON */
+
+const yesBtn = document.getElementById("yesBtn");
+
+yesBtn.addEventListener("click", () => {
+
+    document.getElementById("firstPage").style.display = "none";
+
+    document.getElementById("secondPage").style.display = "flex";
+
+    createHearts();
+
+});
+
+/* HEART EFFECT */
+
+function createHearts(){
+
+    setInterval(() => {
+
+        const heart =
+        document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "💖";
+
+        heart.style.left =
+        Math.random() * window.innerWidth + "px";
+
+        heart.style.animationDuration =
+        (Math.random() * 3 + 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 5000);
+
+    }, 250);
+}
+
+</script>
+
+</body>
+</html>
